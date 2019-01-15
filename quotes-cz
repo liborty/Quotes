@@ -1,7 +1,7 @@
 # (C) Libor Spacek, 2019
 
 # usage: quotes-cz file format
-# reads any plain text (or markdown) from file, e.g., mynovel.mk
+# reads any plain text (or markdown) from file, e.g., mynovel.md
 # writes to disk stylised and converted file.format, eg. mynovel.doc
 # requires a Unix/Linux type system with sed and pandoc installed
 # target output format will be typically odt or doc required by publishers
@@ -14,7 +14,7 @@
 # todo: downgrading nested double quotes to singles.
 # For now, explicitly deploy single quotes inside double ones.
 
-# Example: quotes-cz mynovel.mk doc
+# Example: quotes-cz mynovel.md doc
 
 parts=(${1//./ })  # parses the filename to replace the extension
 

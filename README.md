@@ -17,7 +17,7 @@ The difficult part was using sed to automatically determine which quote is to be
 ### Usage Notes
 	quotes-en filename format
 	quotes-cz filename format
-- reads any plain text (or markdown) from the input file, eg. */some/path/mynovel.mk*
+- reads any plain text (or markdown) from the input file, eg. */some/path/mynovel.md*
 - writes the stylised and converted text in the target *format* to the current directory, eg. as mynovel.doc
 - target output *format* will be typically odt or doc required by your publisher. The *format* is passed to *pandoc* so you can try any other pandoc output formats.
 - Changes all "straight" 'computer' quotes to properly stylised English or Czech ones.
@@ -25,7 +25,7 @@ The difficult part was using sed to automatically determine which quote is to be
 - Note: single newlines are ignored by markdown, so they will disappear from the pandoc output. It took me a while to realise that this is a feature, not a bug.
 - Single quotes are changed to double arrow (french) quotes in the Czech version.
 
-**Example invocation:** quotes-en mynovel.mk doc
+**Example invocation:** quotes-en mynovel.md doc
 
 **Todo:** 
 
