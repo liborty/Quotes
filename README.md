@@ -32,4 +32,4 @@ The difficult part was using sed to automatically determine which quote is to be
 - downgrading nested double quotes to singles. For now, explicitly deploy single quotes inside double ones, which is the correct author style anyway.
 - cz version: upstairs-downstairs single quotes (as well as the french ones). Not sure if it is really needed.
 
-**Gotcha:** Do not mix English and Czech text, or your English apostrophes will be turned into opening single quotes, which happen to be Czech closing single quotes. Confused? Too right you are. Just use the right shell for each language separately and then concatenate their outputs.
+**Gotcha:** Do not mix English and Czech text. Just use the right shell script for each language separately and then concatenate their outputs, if you must.
