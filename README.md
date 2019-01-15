@@ -18,18 +18,15 @@ The difficult part was using sed to automatically determine which quote is to be
 	quotes-en filename format
 	quotes-cz filename format
 - reads any plain text (or markdown) from the input file, eg. */some/path/mynovel.md*
-- writes the stylised and converted text in the target *format* to the current directory, eg. as mynovel.doc
-- target output *format* will be typically odt or doc required by your publisher. The *format* is passed to *pandoc* so you can try any other pandoc output formats.
-- Changes all "straight" 'computer' quotes to properly stylised English or Czech ones.
-- Assumes that all opening quotes are preceded by a white space or a newline. 
-- Note: single newlines are ignored by markdown, so they will disappear from the pandoc output. It took me a while to realise that this is a feature, not a bug.
-- Single quotes are changed to double arrow (french) quotes in the Czech version.
+- writes the stylised converted text in the target *format* to the current directory, eg. as mynovel.doc
+- target output *format* will be typically odt or doc required by a publisher. The *format* is passed to *pandoc* so you can try any other pandoc output formats
+- changes all double and single "straight" 'computer' quotes to their properly stylised English or Czech equivalents
+- assumes that all opening quotes are preceded by a white space or a newline
+- note: single newlines are ignored by markdown, so they will disappear from the pandoc output. Apparently, this is a feature, not a bug.
+- ´čárky´ around words are additionally changed to double arrows (reversed french) quotes by *quotes-cz* in the Czech version.
 
 **Example invocation:** quotes-en mynovel.md doc
 
-**Todo:** 
-
-- downgrading nested double quotes to singles. For now, explicitly deploy single quotes inside double ones, which is the correct author style anyway.
-- cz version: upstairs-downstairs single quotes (as well as the french ones). Not sure if it is really needed.
+**Todo:** downgrading nested double quotes to singles. For now, explicitly deploy single quotes inside double ones, which is the correct author style anyway.
 
 **Gotcha:** Do not mix English and Czech text. Just use the right shell script for each language separately and then concatenate their outputs, if you must.
