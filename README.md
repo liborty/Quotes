@@ -21,9 +21,14 @@ The difficult part was using sed to automatically determine which quote is to be
 - writes the stylised and converted text in the target *format* to the current directory, eg. as mynovel.doc
 - target output *format* will be typically odt or doc required by publishers. The *format* is passed to *pandoc* so you can try any other pandoc output formats.
 - Changes all "straight" 'computer' quotes to properly stylised Czech ones.
-- Assumes that all (lower) opening quotes are preceded by a white space.
+- Assumes that all (lower) opening quotes are preceded by a white space or a newline. Note: single newlines are ignored by markdown, so they will disappear from the pandoc output. It took me a while to realise that this is a feature, not a bug.
 - Single quotes are changed to double arrow (french) quotes.
-- **Todo:** downgrading nested double quotes to singles.
+
+**Example invocation:** quotes mynovel.mk doc
+
+**Todo:** downgrading nested double quotes to singles.
 For now, explicitly deploy single quotes inside double ones, which is the correct author style anyway.
-- **Gotcha:** Do not mix English and Czech text, or your English apostrophies will get turned into Czech quotes! 
-- **Example invocation:** quotes mynovel.mk doc
+
+**Gotcha:** Do not mix English and Czech text, or your English apostrophies will get turned into Czech quotes! 
+
+**Further work:** English version of Quotes.
