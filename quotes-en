@@ -1,0 +1,25 @@
+# (C) Libor Spacek, 2019
+
+# usage: quotes-en file format
+# reads any plain text (or markdown) from file, e.g., mynovel.mk
+# writes to disk stylised and converted file.format, eg. mynovel.doc
+# requires a Unix/Linux type system with sed and pandoc installed
+# target output format will be typically odt or doc required by publishers
+# it is passed to pandoc so you can try any other pandoc formats
+
+# Changes all "straight" 'computer' quotes to properly stylised Czech ones.
+# Assumes that all (lower) opening quotes are preceded by a white space.
+# Single quotes are changed to double arrow (french) quotes.
+
+# todo: downgrading nested double quotes to singles.
+# For now, explicitly deploy single quotes inside double ones.
+
+# Example: quotes-en mynovel.mk doc
+
+parts=(${1//./ })  # parses the filename to replace the extension
+
+sed -e 's_^"_“_g' -e "s_^'_‘_g" \
+	-e 's_\([[:space:]]\)"_\1“_g' -e 's_"_”_g' \
+	-e "s_\([[:space:]]\)'_\1‘_g" -e "s_'_’_g" < $1 | pandoc -o ${parts[-2]}.$2
+	
+echo "written ${parts[-2]}.$2 to the current directory"
