@@ -6,7 +6,7 @@ Unix/Linux shell script utility to typeset quotation marks in proper English or 
 ### Motivation
 Proper typesetting is fiddly business. Mostly one wants to avoid spending a lot of time and minute care on it, as with Latex  for example, or fiddling with hundreds of obscure buttons on common word-processors. The situation is even worse in some languages like Czech, where 'upstairs-downstairs' quotation marks are required but are not even present on keyboard layouts!
 
-The recommended solution is to use *markdown* for easy  human input by the author(s). The fact that *markdown* is just plain text lends it equally well to easy machine processing by standard *Unix/Linux* utilities such as *sed* and *pandoc*. Thus the straight 'computer quotes' can be speed typed into the markdown file and quotes subesquently converts the text  into doc, odt or similar formats demanded by the publishers, with the quotation marks properly typeset. 
+The recommended solution is to use *markdown* for easy  human input by the author(s). The fact that *markdown* is just plain text lends it equally well to easy machine processing by standard *Unix/Linux* utilities such as *sed* and *pandoc*. Thus the straight 'computer quotes' can be speed typed into the markdown file and quotes subsequently converts the text  into doc, odt or similar formats demanded by the publishers, with the quotation marks properly typeset. 
 
 The difficult part was using sed to automatically determine which quote is to be the opening one and which the closing. It is not foolproof, i.e. if you mess up the input with isolated or multiple quote marks, expect the gigo (garbage in, garbage out) principle to kick in. Actually, space before an opening quote is more important than matching the pairs.
 
