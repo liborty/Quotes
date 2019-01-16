@@ -17,8 +17,8 @@
 
 parts=(${1//./ })  # parses the filename to replace the extension
 
-sed -e 's_^"_“_g' -e "s_^'_‘_g" \
-	-e 's_\([[:space:]]\)"_\1“_g' -e 's_"_”_g' \
+sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
+	-e 's_^"_“_g' -e "s_^'_‘_g" -e 's_\([[:space:]]\)"_\1“_g' -e 's_"_”_g' \
 	-e "s_\([[:space:]]\)'_\1‘_g" -e "s_'_’_g" < $1 | pandoc -o ${parts[-2]}.$2
 	
 echo "written ${parts[-2]}.$2 to the current directory"
