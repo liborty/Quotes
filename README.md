@@ -1,7 +1,7 @@
 # Quotes
 **(C) Libor Spacek, 2019**
 
-Unix/Linux shell script utility to typeset quotation marks,  dashes and ellipsis in proper English or Czech language styles and to convert plain text or markdown to most formats required by publishers.
+Unix/Linux shell script utility to typeset quotation marks,  dashes and ellipses in proper English or Czech language styles and to convert plain text or markdown to most formats required by publishers.
 
 ### Motivation
 Proper typesetting is fiddly. Mostly one wants to avoid spending a lot of time and care on it, as with Latex  for example, or fiddling with hundreds of obscure buttons on word-processors. The problem is that certain common typographical elements like quotation marks and dashes are just not present on keyboard layouts or at least not in their proper forms.
