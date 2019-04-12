@@ -1,0 +1,39 @@
+# (C) Libor Spacek, 2019
+
+# usage: quotes-en file format
+# reads any plain text (or markdown) from file, e.g., mynovel.md
+# writes to disk stylised and converted file.format, eg. mynovel.doc
+# requires a Unix/Linux type system with sed and pandoc installed
+# target output format will be typically odt or doc required by publishers
+# it is passed to pandoc so you can try any other pandoc formats
+
+# Changes all "straight" 'computer' quotes to properly stylised ones.
+# Assumes that all opening quotes are preceded by a white space.
+
+# also converts -- to endash, --- to emdash, ... to ellipsis
+
+# todo: downgrading nested double quotes to singles.
+# For now, explicitly deploy single quotes inside double ones.
+
+# Example usage: quotes-en mynovel.md doc
+
+if [ $# -ne 2 ]; then
+  echo 1>&2 "$0: expect two arguments, file.ext targetformat"
+  exit 2
+fi
+
+parts=(${1//./ })  # parses the filename to replace the extension
+
+if [ ${parts[-1]} == $2 ]; then
+  printf "Same output extension! Backing up $1 as %s \n\
+before overwriting with the new version.\n" ${parts[-2]}.bak
+  cp $1 ${parts[-2]}.bak
+fi
+
+parts=(${1//./ })  # parses the filename to replace the extension
+
+sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
+	-e 's_^"_“_g' -e "s_^'_‘_g" -e 's_\([[:space:]]\)"_\1“_g' -e 's_"_”_g' \
+	-e "s_\([[:space:]]\)'_\1‘_g" -e "s_'_’_g" < $1 | pandoc -o ${parts[-2]}.$2
+	
+echo "written ${parts[-2]}.$2 to the current directory"
