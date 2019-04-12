@@ -19,14 +19,14 @@
 # Example usage: quotes-cz mynovel.md doc
 
 if [ $# -ne 2 ]; then
-  echo 1>&2 "$0: očekává dva parametry, file.ext targetformat"
+  echo 1>&2 "$0: očekává dva parametry, soubor.ext cílovýformát"
   exit 2
 fi
 
 parts=(${1//./ })  # parses the filename to replace the extension
 
 if [ ${parts[-1]} == $2 ]; then
-  printf "Stejný soubor a formát výstupu! Zálohuji $1 jako %s \n\
+  printf "Stejný formát výstupu! Zálohuji $1 jako %s \n\
 před přepsáním novou verzí.\n" ${parts[-2]}.bak
   cp $1 ${parts[-2]}.bak
 fi
@@ -37,4 +37,4 @@ sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
 	-e 's_\([[:space:]]\)´\([^[:space:]]\)_\1»\2_g' -e 's_\([^[:space:]]\)´_\1«_g' \
 	-e "s_\([[:space:]]\)'_\1‚_g" -e "s_'_‘_g" < $1 | pandoc -o ${parts[-2]}.$2
 	
-echo "uložil typograficky upravený ${parts[-2]}.$2 do současného adresáře"
+echo "zapsal typograficky upravený soubor ${parts[-2]}.$2 do místního adresáře"
