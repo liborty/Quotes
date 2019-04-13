@@ -41,9 +41,11 @@ The script will make you a backup copy of the original file first, eg. mynovel.b
 ### Releases 
 - **Apr 13 2019** updated this README file  
 - **Apr 12 2019 Upgrade Release**  
-- added for safety automatic backing up when the original file is being overwritten  
-- added error message for wrong number of arguments  
-- the Czech version now has Czech language dialogues and has been renamed accordingly to "uvozovky"
+-- added for safety automatic backing up when the original file is being overwritten (in the same format)  
+-- added an error message for wrong number of arguments  
+-- the Czech version now has Czech language dialogues and has been renamed accordingly as "uvozovky"
+
+- **Jan 14 2019** the first release  
 
 
 **Todo:** downgrading nested double quotes to singles. For now, explicitly deploy single quotes inside double ones, which is the correct author style anyway.
