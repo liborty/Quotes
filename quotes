@@ -1,6 +1,6 @@
 # (C) Libor Spacek, 2019
 
-# usage: quotes-en file format
+# usage: quotes file format
 # reads any plain text (or markdown) from file, e.g., mynovel.md
 # writes to disk stylised and converted file.format, eg. mynovel.doc
 # requires a Unix/Linux type system with sed and pandoc installed
