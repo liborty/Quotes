@@ -1,6 +1,6 @@
 # (C) Libor Spacek, 2019
 
-# usage: quotes-cz file format
+# usage: uvozovky file format
 # reads any plain text (or markdown) from file, e.g., mynovel.md
 # writes to disk stylised and converted file.format, eg. mynovel.doc
 # requires a Unix/Linux type system with sed and pandoc installed
@@ -9,14 +9,14 @@
 
 # Changes all "straight" 'computer' quotes to properly stylised Czech ones.
 # Assumes that all (lower) opening quotes are preceded by a white space or newline
-# ´something´ (v čárkách) are changed to double arrow (french) quotes: »something«
+# ´something´ (enclosing accents = čárky) are changed to double arrow (french) quotes: »something«
 
 # also converts -- to endash, --- to emdash, ... to ellipsis
 
 # todo: downgrading nested double quotes to singles.
 # For now, explicitly deploy single quotes inside double ones.
 
-# Example usage: quotes-cz mynovel.md doc
+# Example usage: uvozovky mynovel.md doc
 
 if [ $# -ne 2 ]; then
   echo 1>&2 "$0: očekává dva parametry, soubor.ext cílovýformát"
