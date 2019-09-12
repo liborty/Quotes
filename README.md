@@ -1,18 +1,18 @@
 # Quotes
 **(C) Libor Spacek, 2019**
 
-Shell script utility to typeset various plain quotation marks,  en and em dashes and ellipses in any plain text (such as markdown) and to convert the result  to most other known formats. It follows the typographical rules for correct quotation marks in English (both up) and in Czech (down - up). 
+Shell script utility to typeset various plain quotation marks,  *en* and *em* dashes and *ellipses* in any plain text (such as markdown) and to convert the result  to most other known formats. It follows the typographical rules for correct quotation marks in English (both up) and optionally in Czech (down - up). 
 
 ### Motivation
-Typesetting can be a fiddly business. This utility aims to avoid spending a lot of time and care on it, as with Latex for example, or fiddling with hundreds of obscure buttons on commercial word-processors. The problem is that certain basic  typographical elements, like up / down / opening / closing quotation marks, dashes and ellipses are represented by uncommon single characters that are usually not present on keyboard layouts.  Even if somehow found or memorised, it is an unnecessary and error prone delay for an author to have to worry about choosing the right one (e.g. opening versus closing quotation marks).
+Typesetting can be a fiddly business. This utility aims to avoid spending a lot of time and care on it, as with Latex for example, or fiddling with hundreds of obscure buttons on commercial word-processors. The problem is that certain basic  typographical elements, like up / down / opening / closing quotation marks, dashes and ellipses are represented by uncommon single characters that are usually not present on keyboard layouts.  Even if somehow found or code memorised, it is an unnecessary and error prone delay for an author to have to worry about choosing the right one (e.g. opening versus closing quotation marks).
   
-The objective of this project is to facilitate easy and fast typing in plain (markdown) text, which is something that many authors will welcome. Invoking this simple shell script will then "magically"  turn the draft  into professional looking typeset result and also convert it from compact plaintext draft to any bloat-format required by backward publishers.
+The objective of this project is to facilitate easy and fast typing in plain (markdown) text, which is a convenience that many authors will welcome. Invoking this simple shell script then   automatically turns the draft  into a professionally looking typeset result and at the same time converts it from the compact plaintext draft to any proprietary bloat-format required by backwards publishers.
 
-The solution recommended to authors is to use a *markdown*  editor, such as Ghostwriter, for easy, non-distracting  input. The straight 'computer quotes' and minus signs for dashes can be easily speed typed into the markdown draft.
+The solution recommended to authors is to use a *markdown*  editor for easy, non-distracting  input. Here are some free  recommendations: *Remarkable, Ghostwriter, Geany* (with a markdown plugin), etc. The straight 'computer quotes' and minus signs for dashes can be easily speed typed into the markdown draft.
 
 *Markdown*, being just plain text, lends itself well to  machine processing by standard *Unix/Linux* utilities, such as *sed* and *pandoc*, as used by *Quotes*.  This script replaces the easy 'computer' characters with the relevant  correct unicodes for the typographical elements and optionally converts the final draft to doc, odt, html or other formats demanded by the publishers. 
 
-The difficult part was using sed to determine, without complete parsing, which quote is the opening one and which is the closing. It is not foolproof. That is if you mess up the input with isolated or multiple quotation marks, expect the gigo (garbage in, garbage out) principle to kick in. Actually, white space before an opening quote is all that this script looks for, thus it is very fast. All remaining quotes are treated as closing quotes. It works well in practice, as long as you don't put spurious spaces before closing quotes.
+The difficult part was using sed to determine, without complete parsing, which quote is the opening one and which is the closing. It is not foolproof. That is if you mess up the input with isolated or multiple quotation marks, expect the gigo (garbage in, garbage out) principle to kick in. This script simply interprets a straight quote preceded by a white space as an opening quote,  thus it is very fast. All remaining quotes are treated as closing quotes. It works well in practice, as long as you don't type spurious spaces before closing quotes, which is a very bad habit anyway.
 
 ### Installation
 - Dependencies: requires  Unix/Linux type system with sed and pandoc installed. 
@@ -39,6 +39,8 @@ The script will make you a backup copy of the original file first, eg. mynovel.b
 - some markdown editors might do some of the substitutions for you, in which case no harm is done.
 
 ### Releases 
+- **Sep 12 2019** updated this README file, started pushing through git
+
 - **Apr 13 2019** updated this README file  
 - **Apr 12 2019 Upgrade Release**  
 -- added for safety automatic backing up when the original file is being overwritten (in the same format)  
