@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # (C) Libor Spacek, 2019
 
 # usage: quotes file format
@@ -17,23 +19,28 @@
 
 # Example usage: quotes-en mynovel.md doc
 
+PROGN=${0##*/}
 if [ $# -ne 2 ]; then
-  echo 1>&2 "$0: expect two arguments, file.ext targetformat"
+  printf 1>&2 "$PROGN expects two arguments, file.ext targetformat\n"
   exit 2
 fi
+FILE=$1
+FMT=$2
+if ! [ -f "$FILE" ]; then
+  printf 1>&2 "$PROGN quitting, file $FILE not found!\n"
+  exit 2
+fi 
+parts=(${FILE//./ })  # parses the filename to replace the extension
 
-parts=(${1//./ })  # parses the filename to replace the extension
-
-if [ ${parts[-1]} == $2 ]; then
-  printf "Same output extension! Backing up $1 as %s \n\
+if [ ${parts[-1]} == $FMT ]; then
+  printf "$PROGN detected same output extension! Backing up $FILE as %s \n\
 before overwriting with the new version.\n" ${parts[-2]}.bak
-  cp $1 ${parts[-2]}.bak
+  cp $FILE ${parts[-2]}.bak
 fi
-
-parts=(${1//./ })  # parses the filename to replace the extension
 
 sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
 	-e 's_^"_“_g' -e "s_^'_‘_g" -e 's_\([[:space:]]\)"_\1“_g' -e 's_"_”_g' \
-	-e "s_\([[:space:]]\)'_\1‘_g" -e "s_'_’_g" < $1 | pandoc -o ${parts[-2]}.$2
+	-e "s_\([[:space:]]\)'_\1‘_g" -e "s_'_’_g" < $FILE | pandoc -o ${parts[-2]}.$FMT
 	
-echo "written ${parts[-2]}.$2 to the current directory"
+printf "$PROGN written ${parts[-2]}.$FMT to the current directory\n"
+

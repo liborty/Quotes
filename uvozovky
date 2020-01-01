@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # (C) Libor Spacek, 2019
 
 # usage: uvozovky file format
@@ -18,23 +20,30 @@
 
 # Example usage: uvozovky mynovel.md doc
 
+PROGN=${0##*/}
 if [ $# -ne 2 ]; then
-  echo 1>&2 "$0: očekává dva parametry, soubor.ext cílovýformát"
+  printf 1>&2 "$PROGN očekávají dva parametry, soubor.ext cílovýformát\n"
   exit 2
 fi
+FILE=$1
+FMT=$2
+if ! [ -f "$FILE" ]; then
+  printf 1>&2 "$PROGN končí, soubor $FILE nenalezen!\n"
+  exit 2
+fi 
+parts=(${FILE//./ })  # parses the filename to replace the extension
 
-parts=(${1//./ })  # parses the filename to replace the extension
-
-if [ ${parts[-1]} == $2 ]; then
-  printf "Stejný formát výstupu! Zálohuji $1 jako %s \n\
+if [ ${parts[-1]} == $FMT ]; then
+  printf "$PROGN objevily již existující soubor výstupu! Zálohuji $FILE jako %s \n\
 před přepsáním novou verzí.\n" ${parts[-2]}.bak
-  cp $1 ${parts[-2]}.bak
+  cp $FILE ${parts[-2]}.bak
 fi
 
 sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
 	-e 's_^"_„_g' -e "s_^'_‚_g" -e 's_^´\([^[:space:]]\)_»\1_g' \
 	-e 's_\([[:space:]]\)"_\1„_g' -e 's_"_“_g' \
 	-e 's_\([[:space:]]\)´\([^[:space:]]\)_\1»\2_g' -e 's_\([^[:space:]]\)´_\1«_g' \
-	-e "s_\([[:space:]]\)'_\1‚_g" -e "s_'_‘_g" < $1 | pandoc -o ${parts[-2]}.$2
+	-e "s_\([[:space:]]\)'_\1‚_g" -e "s_'_‘_g" < $FILE | pandoc -o ${parts[-2]}.$FMT
 	
-echo "zapsal typograficky upravený soubor ${parts[-2]}.$2 do místního adresáře"
+echo "$PROGN zapsaly typograficky upravený soubor ${parts[-2]}.$FMT do místního adresáře\n"
+
