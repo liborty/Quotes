@@ -34,8 +34,7 @@ fi
 parts=(${FILE//./ })  # parses the filename to replace the extension
 
 if [ ${parts[-1]} == $FMT ]; then
-  printf "$PROGN objevily již existující soubor výstupu! Zálohuji $FILE jako %s \n\
-před přepsáním novou verzí.\n" ${parts[-2]}.bak
+  printf "$PROGN objevily již existující soubor výstupu!\n$FILE založen jako ${parts[-2]}.bak a přepsán novou verzí.\n" 
   cp $FILE ${parts[-2]}.bak
 fi
 
@@ -45,5 +44,5 @@ sed -e 's_--_–_g' -e 's_---_—_g' -e 's_\.\.\._\…_g' \
 	-e 's_\([[:space:]]\)´\([^[:space:]]\)_\1»\2_g' -e 's_\([^[:space:]]\)´_\1«_g' \
 	-e "s_\([[:space:]]\)'_\1‚_g" -e "s_'_‘_g" < $FILE | pandoc -o ${parts[-2]}.$FMT
 	
-echo "$PROGN zapsaly typograficky upravený soubor ${parts[-2]}.$FMT do místního adresáře\n"
+printf "$PROGN zapsaly typograficky upravený soubor ${parts[-2]}.$FMT do místního adresáře\n"
 
